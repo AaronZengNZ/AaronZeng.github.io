@@ -105,14 +105,14 @@ let spikeposition = [
     20,
     30
 ];
-function posReload(yes){
+function posReload(dimension){
     let pos = ''
     pos+='|'
     for(i = 1; i < 48; i++){
         if(playerPos == i){
-            if(yes == 1){
+            if(dimension == 1){
                 if(isJump == 0){
-                    if(spikeposition[0] == playerPos || spikeposition[1] == playerPos || spikeposition[2] == playerPos){
+                    if(spikeposition.includes(playerPos) == true){
                         playerPos = 1
                     }
                     else{
@@ -133,7 +133,7 @@ function posReload(yes){
             }
         }
         else{
-            if(spikeposition[0] == i || spikeposition[1] == i || spikeposition[2] == i){
+            if(spikeposition.includes(i) == true){
                 if(yes == 1){
                 pos+='X'
                 }
