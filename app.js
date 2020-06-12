@@ -97,6 +97,58 @@ let cashMcost = 500;
 let yesMap = 0;
 let enemyDmgM = 0;
 let enemyDmgB = 0;
+let isJump = 0;
+let playerPos = 1;
+let makeMore = 0;
+let spikeposition = [
+    10,
+    20,
+    30
+];
+function posReload(yes){
+    let pos = ''
+    pos+='|'
+    for(i = 1; i < 48; i++){
+        if(playerPos == i){
+            if(yes == 1){
+                if(isJump == 0){
+                    if(spikeposition[0] == playerPos || spikeposition[1] == playerPos || spikeposition[2] == playerPos){
+                        playerPos = 1
+                    }
+                    else{
+                    pos+='O'
+                    }
+                }
+                else{
+                    pos+='_'
+                }
+            }
+            else{
+                if(isJump == 1){
+                    pos+='O'
+                }
+                else{
+                    pos+='_'
+                }
+            }
+        }
+        else{
+            if(spikeposition[0] == i || spikeposition[1] == i || spikeposition[2] == i){
+                if(yes == 1){
+                pos+='X'
+                }
+                else{
+                    pos+='_'
+                }
+            }
+            else{
+            pos+='_'
+            }
+        }
+    }
+    pos+='|'
+    return pos;
+}
 document.addEventListener('keyup', event => {
     main = document.getElementById('show')
     cursorBuy = document.getElementById('buyCursor')
@@ -109,8 +161,87 @@ document.addEventListener('keyup', event => {
     buyHp = document.getElementById('BuyHp')
     buyDmg = document.getElementById('BuyDmg')
     buyMult = document.getElementById('BuyCash')
+    buyMore = document.getElementById('BuyMore')
+    makeMoreOutOfYouLife = document.getElementById('MakeMore')
+    up1 = document.getElementById('Jump')
     var a = event.keyCode;
     console.log(a)
+    if (makeMore == 1){
+        up1.innerHTML = posReload(2)
+    }
+    if (a == 39 && makeMore == 1){
+        if(playerPos < 47){
+            playerPos++;
+            if(isJump > 0){
+                isJump -= 1;
+                up1.innerHTML = posReload(2)
+            }
+            else{
+                let pos = ''
+            pos += '|'
+            for (i = 1; i < 48; i++) {
+                if (playerPos == i) {
+                    pos += 'O'
+                }
+                else {
+                    pos += '_'
+                }
+            }
+            pos += '|'
+            makeMoreOutOfYouLife.innerHTML = pos;
+            }
+            makeMoreOutOfYouLife.innerHTML = posReload(1)
+        }
+    }
+    if (a == 38 && makeMore == 1) {
+        if (isJump == 0) {
+            isJump = 2;
+            makeMoreOutOfYouLife.innerHTML = posReload(1)
+            up1.innerHTML = posReload(2)
+            let pos = ''
+            pos += '|'
+            for (i = 1; i < 48; i++) {
+                if (playerPos == i) {
+                    pos += 'O'
+                }
+                else {
+                    pos += '_'
+                }
+            }
+            pos += '|'
+            up1.innerHTML = pos;
+        }
+    }
+    if (a == 37 && makeMore == 1){
+        if(playerPos > 1){
+            playerPos--;
+            if(isJump > 0){
+                isJump -= 1;
+                up1.innerHTML = posReload(2)
+            }
+            else{
+                let pos = ''
+            pos += '|'
+            for (i = 1; i < 48; i++) {
+                if (playerPos == i) {
+                    pos += 'O'
+                }
+                else {
+                    pos += '_'
+                }
+            }
+            pos += '|'
+            makeMoreOutOfYouLife.innerHTML = pos;
+            }
+            makeMoreOutOfYouLife.innerHTML = posReload(1)
+        }
+    }
+    if (a == 55){
+        if(count >= 10000000000000){
+            makeMore = 1;
+            buyMore.innerHTML = 'Use the arrow keys to navigate. X is bad. Press up to go to the upper dimenion for 2 moves.'
+        }
+    }
     if (a == 187) {
         count += 5000000000000001;
     }
@@ -125,7 +256,7 @@ document.addEventListener('keyup', event => {
             cursorCount++;
             floor += cursorCount * 5;
             main.innerHTML = `${count}$ ` + cursor[cursorMove]
-            cursorBuy.innerHTML = `Buy cursor for ${cost}$ - press 1 - Cursors: ` + (cursorCount - 4) + ', earning ' + cursorCount + '$ per 3 taps.'
+            cursorBuy.innerHTML = `-Press 1- Buy cursor for ${cost}$ Cursors: ` + (cursorCount - 4) + ', earning ' + cursorCount + '$ per 3 taps.'
         }
     }
     if (a == 50) {
@@ -135,7 +266,7 @@ document.addEventListener('keyup', event => {
             speed += speed;
             speedCost += speed * 50;
             main.innerHTML = `${count}$ ` + cursor[cursorMove]
-            speedBuy.innerHTML = `Buy $ per tap for ${speedCost}$ - press 2 - Upgrades: ` + (speed - 1) + '.'
+            speedBuy.innerHTML = `-Press 2- Buy $ per tap for ${speedCost}$ Upgrades: ` + (speed - 1) + '.'
         }
     }
     if (a == 53){
@@ -217,7 +348,7 @@ document.addEventListener('keyup', event => {
             count -= mapCost;
             maps += 1;
             mapCost = mapCost * mapCost * 4
-            mapBuy.innerHTML = `Buy map for ${mapCost}$ - press 3.`
+            mapBuy.innerHTML = `-Press 3- Buy map for ${mapCost}$.`
             if (maps == 1) {
                 map1.innerHTML = 'Press q to journey to the wild plains!'
                 yesMap = 1;
@@ -268,6 +399,9 @@ document.addEventListener('keyup', event => {
             }
         }
         else {
+            if(count >= 1000000000000 && makeMore == 0){
+                buyMore.innerHTML = '-Press 7- Make more out of your life for 10,000,000,000,000$.'
+            }
             if (messages[taps] != '') {
                 main.innerHTML = messages[taps]
                 taps++;
@@ -275,13 +409,13 @@ document.addEventListener('keyup', event => {
             else {
                 count += speed;
                 if (count >= mapCost) {
-                    mapBuy.innerHTML = `Buy map for ${mapCost}$ - press 3.`
+                    mapBuy.innerHTML = `-Press 3- Buy map for ${mapCost}$.`
                 }
                 if (count >= cost || isCursor == 1) {
-                    cursorBuy.innerHTML = `Buy cursor for ${cost}$ - press 1 - Cursors: ` + (cursorCount - 4) + ', earning ' + cursorCount + '$ per 3 taps.'
+                    cursorBuy.innerHTML = `-Press 1- Buy cursor for ${cost}$ Cursors: ` + (cursorCount - 4) + ', earning ' + cursorCount + '$ per 3 taps.'
                 }
                 if (count >= speedCost || speedIsBuy == 1) {
-                    speedBuy.innerHTML = `Buy $ per tap for ${speedCost}$ - press 2 - Upgrades: ` + (speed - 1) + '.'
+                    speedBuy.innerHTML = `-Press 2- Buy $ per tap for ${speedCost}$ Upgrades: ` + (speed - 1) + '.'
                 }
                 if (isCursor == 1) {
                     main.innerHTML = `${count}$ ` + cursor[cursorMove]
