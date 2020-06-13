@@ -105,6 +105,17 @@ let spikeposition = [
     20,
     30
 ];
+let spikeposition2 = [
+    13,
+    23,
+    33
+];
+let fakeX = [
+    0
+]
+let fakeX2 = [
+    0
+]
 function posReload(dimension){
     let pos = ''
     pos+='|'
@@ -113,41 +124,311 @@ function posReload(dimension){
             if(dimension == 1){
                 if(isJump == 0){
                     if(spikeposition.includes(playerPos) == true){
-                        playerPos = 1
+                        if(dimension == 1){
+                        playerPos = 1;
+                        }
+                        else{
+                        }
                     }
                     else{
                     pos+='O'
                     }
                 }
-                else{
-                    pos+='_'
+                else {
+                    if (spikeposition.includes(i) == true) {
+                        pos+='X'
+                    }
+                    else{
+                        pos+='_'
+                    }
                 }
             }
-            else{
-                if(isJump == 1){
+            else {
+                if (isJump == 1){
+                    if(dimension == 2 && spikeposition2.includes(playerPos)){
+                        playerPos = 1;
+                    }
+                    if(playerPos == i){
                     pos+='O'
+                    }
+                    else{
+                        if(spikeposition2.includes(i)){
+                            pos+='X'
+                        }
+                    }
                 }
                 else{
+                    if(spikeposition2.includes(i)){
+                        pos+='X'
+                    }
+                    else{
                     pos+='_'
+                    }
                 }
             }
         }
         else{
             if(spikeposition.includes(i) == true){
-                if(yes == 1){
+                if(dimension == 1){
                 pos+='X'
+                }
+                else{
+                    if(spikeposition2.includes(i) == true){
+                        if(dimension == 2){
+                        pos+='X'
+                        }
+                    }
+                    else{
+                    pos+='_'
+                    }
+                }
+            }
+            else{
+            if(spikeposition2.includes(i) == true){
+                if(dimension == 2){
+                    pos+='X'
+                }
+                else{
+                    pos+='_'
+                }
+            }
+            if(dimension == 1){
+                if(fakeX.includes(i) == true){
+                    pos+='X'
                 }
                 else{
                     pos+='_'
                 }
             }
             else{
-            pos+='_'
+                if(dimension == 2){
+                    if(fakeX2.includes(i) == true){
+                        pos+='X'
+                    }
+                    else{
+                        pos+='_'
+                    }
+                }
+            }
             }
         }
     }
     pos+='|'
     return pos;
+}
+var level = 0;
+var message = [
+    'Beware of the dimensional shifts.',
+    'Tricks of the mind can blind you.',
+    'Patience, That\'s what you need.',
+    'A simple level, but alas, that\'s only what you see.',
+    'More tricks of the mind, see the difference for yourself.',
+    'You mind is what you see, not what you feel.',
+    'What is beyond may question you, but don\'t be a fool.',
+    'You want to make more out of your life, but that may only be a dream.',
+    'Never let your mind block you from your dreams.',
+    'It is too simple to comprehend, so just believe it, as it might give you what you want.'
+]
+function levelRender() {
+    if (level == 0) {
+        spikeposition = [
+            10,
+            20,
+            30
+        ]
+        spikeposition2 = [
+            15,
+            25,
+            35
+        ]
+    }
+    if (level == 1) {
+        spikeposition = [
+            12,
+            22,
+            32,
+            41,
+            47
+        ]
+        spikeposition2 = [
+            3,
+            17,
+            27,
+            37,
+            43
+        ]
+    }
+    if (level == 2) {
+        spikeposition = [
+            2,
+            3,
+            7,
+            8,
+            12,
+            13,
+            17,
+            18,
+            22,
+            23,
+            27,
+            28,
+            32,
+            33,
+            37,
+            38,
+            42,
+            43,
+            47
+        ]
+        spikeposition2 = [
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45
+        ]
+    }
+    if (level == 3) {
+        spikeposition = [
+            2,
+            6,
+            10,
+            14,
+            18,
+            22,
+            26,
+            30,
+            34,
+            38,
+            42,
+            46
+        ]
+        spikeposition2 = [
+            4,
+            8,
+            12,
+            16,
+            20,
+            24,
+            28,
+            32,
+            36,
+            40,
+            44
+        ]
+    }
+
+    if (level == 4) {
+        spikeposition = [
+            3,
+            
+            9,
+            
+            15,
+            
+            20,
+            
+            26,
+            
+            32,
+            
+            38,
+            44,
+        ]
+        spikeposition2 = [
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45
+        ]
+    }
+
+    if (level == 5) {
+        fakeX = [
+            5,
+            15,
+            35,
+            25,
+            45
+        ]
+        fakeX2 = [
+            5,
+            15,
+            35,
+            25,
+            45
+        ]
+    }
+
+    if (level == 6) {
+        fakeX = [
+            3,
+            6,
+            9,
+            12,
+            15,
+            18,
+            20,
+            23,
+            26,
+            29,
+            32,
+            35,
+            38,
+            41,
+            44,
+            47
+        ]
+        fakeX2 = [
+            2
+        ]
+        spikeposition = [
+            2
+        ]
+        spikeposition2 = [
+            5,
+            8,
+            11,
+            14,
+            17,
+            22,
+            25,
+            28,
+            31,
+            34,
+            37,
+            40,
+            43,
+            46
+        ]
+    }
+
+    if (level == 7) {
+
+    }
+
+    if (level == 8) {
+
+    }
+
+    if (level == 9) {
+
+    }
+
+    if (level == 10) {
+
+    }
+
+
 }
 document.addEventListener('keyup', event => {
     main = document.getElementById('show')
@@ -173,7 +454,6 @@ document.addEventListener('keyup', event => {
         if(playerPos < 47){
             playerPos++;
             if(isJump > 0){
-                isJump -= 1;
                 up1.innerHTML = posReload(2)
             }
             else{
@@ -192,31 +472,76 @@ document.addEventListener('keyup', event => {
             }
             makeMoreOutOfYouLife.innerHTML = posReload(1)
         }
+        else{
+            playerPos = 1;
+            level ++;
+            levelRender()
+        }
     }
     if (a == 38 && makeMore == 1) {
         if (isJump == 0) {
-            isJump = 2;
+            isJump = 1;
             makeMoreOutOfYouLife.innerHTML = posReload(1)
             up1.innerHTML = posReload(2)
             let pos = ''
             pos += '|'
             for (i = 1; i < 48; i++) {
-                if (playerPos == i) {
-                    pos += 'O'
+                if(spikeposition2.includes(i) == true){
+                    if(spikeposition2.includes(playerPos) == true){
+                    pos+='X'
+                    playerPos = 1;
+                    }
+                    else{
+                        pos+='X'
+                    }
                 }
-                else {
-                    pos += '_'
+                else{
+                    if(playerPos == i){
+                        pos+='O'
+                    }
+                    else{
+                pos+='_'
+                    }
                 }
             }
             pos += '|'
             up1.innerHTML = pos;
         }
     }
+    if (a == 40 && makeMore == 1) {
+        if (isJump == 1) {
+            isJump = 0;
+            makeMoreOutOfYouLife.innerHTML = posReload(1)
+            up1.innerHTML = posReload(2)
+            let pos = ''
+            pos += '|'
+            for (i = 1; i < 48; i++) {
+                if(spikeposition.includes(i) == true){
+                    if(spikeposition.includes(playerPos) == true){
+                    pos+='X'
+                    playerPos = 1;
+                    }
+                    else{
+                        pos+='X'
+                    }
+                }
+                else{
+                    if(playerPos == i){
+                        pos+='O'
+                    }
+                    else{
+                pos+='_'
+                    }
+                }
+            }
+            pos += '|'
+            makeMoreOutOfYouLife.innerHTML = pos;
+        }
+    }
     if (a == 37 && makeMore == 1){
         if(playerPos > 1){
             playerPos--;
             if(isJump > 0){
-                isJump -= 1;
                 up1.innerHTML = posReload(2)
             }
             else{
@@ -239,7 +564,7 @@ document.addEventListener('keyup', event => {
     if (a == 55){
         if(count >= 10000000000000){
             makeMore = 1;
-            buyMore.innerHTML = 'Use the arrow keys to navigate. X is bad. Press up to go to the upper dimenion for 2 moves.'
+            buyMore.innerHTML = 'Use the arrow keys to navigate. Dimensional shifts may appear when you switch dimensions.'
         }
     }
     if (a == 187) {
@@ -363,6 +688,9 @@ document.addEventListener('keyup', event => {
             }
         }
     }
+    if(makeMore == 1 && level >= 1){
+        buyMore.innerHTML = message[level-1]
+    }
     if (event.code === 'Space') {
         count = Math.round(count)
         if (yesMap >= 1) {
@@ -401,6 +729,8 @@ document.addEventListener('keyup', event => {
         else {
             if(count >= 1000000000000 && makeMore == 0){
                 buyMore.innerHTML = '-Press 7- Make more out of your life for 10,000,000,000,000$.'
+            }
+            else{
             }
             if (messages[taps] != '') {
                 main.innerHTML = messages[taps]
