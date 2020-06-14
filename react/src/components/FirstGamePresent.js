@@ -19,7 +19,7 @@ const FirstGamePresent = ({
         </div>
 
         <div className="text-success">
-          Other person: try to guess what key the first person pressed.
+          Second person: Try to guess what is the secret key by press other keys
         </div>
       </div>
       {secretKey === pressedKey && (
@@ -27,7 +27,7 @@ const FirstGamePresent = ({
           <h3 className="text-danger">Congratulation, you won!</h3>
           <div className="text-success">
             You've tried {keyPressTimes} times, your score is{" "}
-            {100 - keyPressTimes}/100
+            {100 - keyPressTimes * 2}/100
           </div>
           Press Esc key to start the game again!
         </>
