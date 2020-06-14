@@ -116,10 +116,52 @@ let fakeX = [
 let fakeX2 = [
     0
 ]
+let textShow = 0
+let text = ['C',
+'O',
+'N',
+'G',
+'A',
+'T',
+'S',
+',',
+'Y',
+'O',
+'U',
+'_',
+'W',
+'O',
+'N',
+'!',
+'M',
+'A',
+'D',
+'E',
+'_',
+'B',
+'Y',
+'_',
+'A',
+'A',
+'R',
+'O',
+'N',
+'_',
+'Z',
+'.']
 function posReload(dimension){
     let pos = ''
     pos+='|'
     for(i = 1; i < 48; i++){
+        if(textShow == 1 && i <= 16){
+            if(dimension == 1){
+                pos+=text[i-1]
+            }
+            else{
+                pos+=text[i + 15]
+            }
+        }
+        else{
         if(playerPos == i){
             if(dimension == 1){
                 if(isJump == 0){
@@ -136,7 +178,12 @@ function posReload(dimension){
                 }
                 else {
                     if (spikeposition.includes(i) == true) {
-                        pos+='X'
+                        if(empty == 1){
+                            pos+=' '
+                        }
+                        else{
+                            pos+='X'
+                        }
                     }
                     else{
                         pos+='_'
@@ -153,13 +200,23 @@ function posReload(dimension){
                     }
                     else{
                         if(spikeposition2.includes(i)){
-                            pos+='X'
+                            if(empty == 1){
+                                pos+=' '
+                            }
+                            else{
+                                pos+='X'
+                            }
                         }
                     }
                 }
                 else{
                     if(spikeposition2.includes(i)){
-                        pos+='X'
+                        if(empty == 1){
+                            pos+=' '
+                        }
+                        else{
+                            pos+='X'
+                        }
                     }
                     else{
                     pos+='_'
@@ -170,12 +227,22 @@ function posReload(dimension){
         else{
             if(spikeposition.includes(i) == true){
                 if(dimension == 1){
-                pos+='X'
+                    if(empty == 1){
+                        pos+=' '
+                    }
+                    else{
+                        pos+='X'
+                    }
                 }
                 else{
                     if(spikeposition2.includes(i) == true){
                         if(dimension == 2){
-                        pos+='X'
+                            if(empty == 1){
+                                pos+=' '
+                            }
+                            else{
+                                pos+='X'
+                            }
                         }
                     }
                     else{
@@ -186,7 +253,12 @@ function posReload(dimension){
             else{
             if(spikeposition2.includes(i) == true){
                 if(dimension == 2){
-                    pos+='X'
+                    if(empty == 1){
+                        pos+=' '
+                    }
+                    else{
+                        pos+='X'
+                    }
                 }
                 else{
                     pos+='_'
@@ -213,6 +285,7 @@ function posReload(dimension){
             }
         }
     }
+}
     pos+='|'
     return pos;
 }
@@ -224,13 +297,16 @@ var message = [
     'A simple level, but alas, that\'s only what you see.',
     'More tricks of the mind, see the difference for yourself.',
     'You mind is what you see, not what you feel.',
-    'What is beyond may question you, but don\'t be a fool.',
+    'What is beyond may question you, but don\'t be a fool, even if it\'s only a small gap.',
     'You want to make more out of your life, but that may only be a dream.',
     'Never let your mind block you from your dreams.',
     'It is too simple to comprehend, so just believe it, as it might give you what you want.'
 ]
+let empty = 0
 function levelRender() {
     if (level == 0) {
+        fakeX = [0]
+        fakeX2 = [0]
         spikeposition = [
             10,
             20,
@@ -341,14 +417,13 @@ function levelRender() {
         ]
         spikeposition2 = [
             5,
-            10,
-            15,
-            20,
-            25,
-            30,
-            35,
+            11,
+            17,
+            22,
+            28,
+            34,
             40,
-            45
+            46
         ]
     }
 
@@ -367,6 +442,8 @@ function levelRender() {
             25,
             45
         ]
+        spikeposition = [0]
+        spikeposition2 = [0]
     }
 
     if (level == 6) {
@@ -413,19 +490,102 @@ function levelRender() {
     }
 
     if (level == 7) {
-
+        empty = 1;
+        fakeX = [0]
+        fakeX2 = [0]
+        spikeposition = [
+            10,
+            20,
+            30
+        ]
+        spikeposition2 = [
+            15,
+            25,
+            35
+        ]
     }
 
     if (level == 8) {
-
+        spikeposition = [
+            2,
+            6,
+            10,
+            14,
+            18,
+            22,
+            26,
+            30,
+            34,
+            38,
+            42,
+            46
+        ]
+        spikeposition2 = [
+            4,
+            8,
+            12,
+            16,
+            20,
+            24,
+            28,
+            32,
+            36,
+            40,
+            44
+        ]
     }
-
     if (level == 9) {
-
+        fakeX = [
+            3,
+            6,
+            9,
+            12,
+            15,
+            18,
+            20,
+            23,
+            26,
+            29,
+            32,
+            35,
+            38,
+            41,
+            44,
+            47
+        ]
+        fakeX2 = [
+            2
+        ]
+        spikeposition = [
+            2
+        ]
+        spikeposition2 = [
+            5,
+            8,
+            11,
+            14,
+            17,
+            22,
+            25,
+            28,
+            31,
+            34,
+            37,
+            40,
+            43,
+            46
+        ]
     }
 
     if (level == 10) {
-
+        main = document.getElementById('show')
+        count += Infinity;
+        fakeX = [0]
+        fakeX2 = [0]
+        spikeposition = [0]
+        spikeposition2 = [0]
+        textShow = 1;
+        main.innerHTML = `${count}$ ` + cursor[cursorMove]
     }
 
 
@@ -488,11 +648,21 @@ document.addEventListener('keyup', event => {
             for (i = 1; i < 48; i++) {
                 if(spikeposition2.includes(i) == true){
                     if(spikeposition2.includes(playerPos) == true){
-                    pos+='X'
+                        if(empty == 1){
+                            pos+=' '
+                        }
+                        else{
+                            pos+='X'
+                        }
                     playerPos = 1;
                     }
                     else{
-                        pos+='X'
+                        if(empty == 1){
+                            pos+=' '
+                        }
+                        else{
+                            pos+='X'
+                        }
                     }
                 }
                 else{
@@ -500,7 +670,12 @@ document.addEventListener('keyup', event => {
                         pos+='O'
                     }
                     else{
-                pos+='_'
+                        if(fakeX2.includes(i) == true){
+                            pos+='X'
+                        }
+                        else{
+                            pos+='_'
+                        }
                     }
                 }
             }
@@ -518,11 +693,21 @@ document.addEventListener('keyup', event => {
             for (i = 1; i < 48; i++) {
                 if(spikeposition.includes(i) == true){
                     if(spikeposition.includes(playerPos) == true){
-                    pos+='X'
+                        if(empty == 1){
+                            pos+=' '
+                        }
+                        else{
+                            pos+='X'
+                        }
                     playerPos = 1;
                     }
                     else{
-                        pos+='X'
+                        if(empty == 1){
+                            pos+=' '
+                        }
+                        else{
+                            pos+='X'
+                        }
                     }
                 }
                 else{
@@ -530,7 +715,12 @@ document.addEventListener('keyup', event => {
                         pos+='O'
                     }
                     else{
-                pos+='_'
+                        if(fakeX.includes(i) == true){
+                            pos+='X'
+                        }
+                        else{
+                            pos+='_'
+                        }
                     }
                 }
             }
@@ -569,6 +759,8 @@ document.addEventListener('keyup', event => {
     }
     if (a == 187) {
         count += 5000000000000001;
+        level += 1;
+        levelRender()
     }
     if (a == 49) {
         if (count >= cost) {
