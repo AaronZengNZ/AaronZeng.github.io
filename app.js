@@ -266,7 +266,12 @@ function posReload(dimension){
             }
             if(dimension == 1){
                 if(fakeX.includes(i) == true){
-                    pos+='X'
+                    if(empty == 1){
+                        pos+=' '
+                    }
+                    else{
+                        pos+='X'
+                    }
                 }
                 else{
                     pos+='_'
@@ -275,7 +280,12 @@ function posReload(dimension){
             else{
                 if(dimension == 2){
                     if(fakeX2.includes(i) == true){
-                        pos+='X'
+                        if(empty == 1){
+                            pos+=' '
+                        }
+                        else{
+                            pos+='X'
+                        }
                     }
                     else{
                         pos+='_'
@@ -671,7 +681,12 @@ document.addEventListener('keyup', event => {
                     }
                     else{
                         if(fakeX2.includes(i) == true){
-                            pos+='X'
+                            if(empty == 1){
+                                pos+=' '
+                            }
+                            else{
+                                pos+='X'
+                            }
                         }
                         else{
                             pos+='_'
@@ -716,7 +731,12 @@ document.addEventListener('keyup', event => {
                     }
                     else{
                         if(fakeX.includes(i) == true){
-                            pos+='X'
+                            if(empty == 1){
+                                pos+=' '
+                            }
+                            else{
+                                pos+='X'
+                            }
                         }
                         else{
                             pos+='_'

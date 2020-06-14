@@ -27,7 +27,7 @@ const FirstGamePresent = ({
           <h3 className="text-danger">Congratulation, you won!</h3>
           <div className="text-success">
             You've tried {keyPressTimes} times, your score is{" "}
-            {100 - keyPressTimes * 2}/100
+            {Math.floor(99 / keyPressTimes + 1)}/100
           </div>
           Press Esc key to start the game again!
         </>
