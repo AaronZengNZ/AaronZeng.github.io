@@ -601,6 +601,29 @@ function levelRender() {
 
 
 }
+setInterval(function(){
+    let main = document.getElementById('show')
+    if (messages[taps] != '') {
+        
+    }
+    else{
+        count += speed;
+    if (isCursor == 1) {
+        main.innerHTML = `${count}$ ` + cursor[cursorMove]
+        cursorMove++;
+        if (cursorMove == 3) {
+            cursorMove = 0;
+            count += cursorCount;
+        }
+    }
+    else {
+        main.innerHTML = `${count}$ ` + talking[Math.floor(count / 5)]
+        if (talking[Math.floor(count / 5)] == 'undefined.') {
+            count = 500;
+        }
+    };
+    }
+},1000)
 document.addEventListener('keyup', event => {
     main = document.getElementById('show')
     cursorBuy = document.getElementById('buyCursor')
