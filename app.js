@@ -73,6 +73,7 @@ let dmgBaseB = 10;
 let battle = 0;
 let enemyHp = 0;
 let hp = hpBase;
+let multMult = 250;
 const names = [
     'Wolf'
     , 'Python'
@@ -772,7 +773,7 @@ document.addEventListener('keyup', event => {
         }
     }
     if (a == 55){
-        if(count >= 10000000000000){
+        if(count >= 1000000000000000){
             makeMore = 1;
             buyMore.innerHTML = 'Use the arrow keys to navigate. Dimensional shifts may appear when you switch dimensions.'
         }
@@ -835,7 +836,8 @@ document.addEventListener('keyup', event => {
     if (a == 54){
         if(count >= cashMcost){
             count -= cashMcost;
-            cashMcost += Math.floor(cashM * 400);
+            cashMcost += Math.floor(cashM * multMult);
+            multMult += Math.floor(multMult/50)*10
             cashM += Math.floor(cashM)/10
             cashM = Math.floor(cashM*10)/10
             buyDmg.innerHTML = '-Press 4- Buy more dmg for ' + dmgCost + '$, Max dmg:' + dmgBaseB + ', Least dmg:' + dmgBaseS + '.'
@@ -939,8 +941,8 @@ document.addEventListener('keyup', event => {
             }
         }
         else {
-            if(count >= 1000000000000 && makeMore == 0){
-                buyMore.innerHTML = '-Press 7- Make more out of your life for 10,000,000,000,000$.'
+            if(count >= 100000000000000 && makeMore == 0){
+                buyMore.innerHTML = '-Press 7- Make more out of your life for 1,000,000,000,000,000$.'
             }
             else{
             }
