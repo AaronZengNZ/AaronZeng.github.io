@@ -601,29 +601,87 @@ function levelRender() {
 
 
 }
-setInterval(function(){
-    let main = document.getElementById('show')
-    if (messages[taps] != '') {
-        
+let tapsSpeed = [
+    1000,
+    600,
+    350,
+    175,
+    100,
+    50,
+    20,
+    10,
+    5,
+    3,
+    1
+];
+let showSpeed = [
+    ' Buy Autotapper for 5k$',
+    '1 Tap per second - a hour of idleness - 50 seconds of unidleness - Next upgrade: 40K',
+    '2 Taps per second - slightly more productive. - Next upgrade: 350K',
+    '3 Taps per second - useless... need more. - Next upgrade: 2.8M',
+    '5 Taps per second - idle time!!! - Next upgrade: 9M',
+    '10 Taps per second - faster than you... or not. - Next upgrade: 40M',
+    '20 Taps per second - not enough...? - Next upgrade: 250M',
+    '50 Taps per second - okay, you can stop now. - Next upgrade: 6B',
+    '100 Taps per second... Stop now, really - Next upgrade: 75B',
+    'Hundreds of taps per second... Is your computer laggin? - Next upgrade: 1T',
+    'Thousands of taps per second?! This browser is about to crash. - Next upgrade: 50T',
+    'Too much taps per second!!! K.O.'
+]
+let buys = 0;
+let costA = [
+    5000,
+    40000,
+    350000,
+    2800000,
+    9000000,
+    40000000,
+    250000000,
+    6000000000,
+    75000000000,
+    1000000000000,
+    50000000000000
+];
+let tapMult = 100;
+let tog = document.getElementById('toggle')
+tog.innerHTML = showSpeed[buys]
+document.getElementById('toggle').onclick = function(){
+    if(count >= costA[buys]){
+        if(buys == 0){
+            count -= costA[buys]
+            buys++;
+            document.getElementById('toggle').innerHTML = showSpeed[buys]
     }
     else{
-        count += speed;
-    if (isCursor == 1) {
-        main.innerHTML = `${count}$ ` + cursor[cursorMove]
-        cursorMove++;
-        if (cursorMove == 3) {
-            cursorMove = 0;
-            count += cursorCount;
-        }
+        buys++;
+        document.getElementById('toggle').innerHTML = showSpeed[buys]
+        count -= costA[buys - 1]
     }
-    else {
-        main.innerHTML = `${count}$ ` + talking[Math.floor(count / 5)]
-        if (talking[Math.floor(count / 5)] == 'undefined.') {
-            count = 500;
-        }
-    };
+    setInterval(function(){
+        let main = document.getElementById('show')
+            if (messages[taps] != '') {
+
+            }
+            else {
+                count += speed;
+                if (isCursor == 1) {
+                    main.innerHTML = `${count}$ ` + cursor[cursorMove]
+                    cursorMove++;
+                    if (cursorMove == 3) {
+                        cursorMove = 0;
+                        count += cursorCount;
+                    }
+                }
+                else {
+                    main.innerHTML = `${count}$ ` + talking[Math.floor(count / 5)]
+                    if (talking[Math.floor(count / 5)] == 'undefined.') {
+                        count = 500;
+                    }
+                };
+            }
+        }, tapsSpeed[buys - 1])
     }
-},1000)
+}
 document.addEventListener('keyup', event => {
     main = document.getElementById('show')
     cursorBuy = document.getElementById('buyCursor')
