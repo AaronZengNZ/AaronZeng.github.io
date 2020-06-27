@@ -57,7 +57,7 @@ window.setInterval(function(){
     else{
     getMoney.innerHTML = 'Get Some Money'
     }
-},45)
+},15)
 getMoney.onclick = function(){
     if(timeOut <= 0){
     timeOut = timeoutLength
