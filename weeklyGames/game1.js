@@ -5,7 +5,172 @@ var timeOut = 0;
 var timeoutLength = 1000 
 var moneyCount = 0;
 var tickDecCost = 1;
-
+var fight = document.getElementById('battleBtn')
+var fightText = document.getElementById('battle')
+var yourHp = 100;
+var enemyHp = 100;
+var isFight = 0;
+var fightTimeout = 0;
+var waste = document.getElementById('waste')
+var wasteCount = -1;
+var talkArray = [
+    'Owo',
+    'UwU',
+    'Uwu?',
+    'Owo...',
+    'Null',
+    'nwn',
+    '...?',
+    'U waster',
+    '0w0',
+    'y?',
+    'sturp',
+    'gah',
+    'gahhhh',
+    'GAAAAH!',
+    '911',
+    'police coming',
+    'wee woo',
+    '*siren',
+    'kiel him.',
+    'sry cant do that',
+    '...?',
+    '...!',
+    'o w o',
+    '*silence',
+    '.....',
+    'seriously stop',
+    'ur wasting time',
+    'preshous time',
+    '!w!',
+    'ko...',
+    '021,022,88529',
+    'hello me dev',
+    'kil him',
+    'no',
+    'owowo',
+    'OWO',
+    'oWo',
+    'xWx',
+    'oki he ded',
+    'here have muni',
+    'oops i mean bone',
+    'ok gud bye'
+]
+var bone = 0;
+var boneShow = document.getElementById('bones')
+var boneMonsterWait = 0;
+var boneMonster = document.getElementById('boneMonster')
+var boneWait = 0
+var feed = document.getElementById('feed')
+var canFeed = false
+var productionbonerate = 0;
+feed.onclick = function(){
+    if(canFeed){
+        bone -= 1;
+        productionbonerate += 0.1;
+    }
+}
+function boneMonsterGo(){
+    productionbonerate = 0.1
+    canFeed = true;
+    window.setInterval(function(){
+        if(boneWait == 0){
+            boneWait = 30;
+            boneMonster.innerHTML = 'VVV=_ am bone monster | bone production ['+productionbonerate+']'
+            bone += productionbonerate
+            bone = Math.round(bone * 10) / 10
+            boneShow.innerHTML = 'You have '+bone+' bones. [The bone monster is coming... '+boneMonsterWait+']'
+            
+        }
+        else{
+            boneWait -= 1;
+            boneMonster.innerHTML = 'VVV=O am bone monster | bone production ['+productionbonerate+']'
+        }
+    },100)
+}
+window.setInterval(function(){
+    if(boneMonsterWait >= 1){
+        boneShow.innerHTML = 'You have '+bone+' bones. [The bone monster is coming... '+boneMonsterWait+']'
+        if(boneMonsterWait == 1){
+            boneMonsterGo()
+            boneShow.innerHTML = 'You have '+bone+' bones. [The bone monster is here...]'
+        }
+        boneMonsterWait -= 1;
+    }
+},800)
+waste.onclick = function(){
+    if(moneyCount >= 1){
+        moneyCount -= 1;
+        wasteCount += 1
+        if(talkArray[wasteCount] == 'here have muni'){
+            bone++;
+            boneShow.innerHTML = 'You have '+bone+' bones.'
+            boneMonsterWait = 30;
+        }
+        if(talkArray[wasteCount] == undefined){
+            waste.innerHTML = '??? | waste ur muny here? [1]'
+        }
+        else{
+        waste.innerHTML = talkArray[wasteCount] + ' | waste ur muny here! [1]'
+        }
+    }
+}
+window.setInterval(function(){
+    if(isFight == 1){
+        fightText.innerHTML = 'Your Hp:' + yourHp + ' | Enemy Hp:' + enemyHp;
+        fight.innerHTML = 'Attack'
+        if(yourHp >= 1){
+            yourHp -= 1;
+        }
+        else{
+            loose()
+        }
+    }
+},170)
+window.setInterval(function(){
+    if(fightTimeout >= 1){
+        fightTimeout -= 1;
+    }
+    else{
+        fight.innerHTML = 'Fight Someone [15]'
+    }
+},500)
+fight.onclick = function(){
+    if(isFight == 0 && fightTimeout == 0){
+        if(moneyCount >= 15){
+            moneyCount -= 15;
+            isFight = 1;
+        }
+    }
+    else{
+        if(fightTimeout != 0){
+            
+        }
+        else{
+        fightText.innerHTML = 'Your Hp:' + yourHp + ' | Enemy Hp:' + enemyHp;
+        enemyHp -= 1;
+        if(enemyHp <= 0){
+            win()
+        }
+    }
+    }
+}
+function loose(){
+    isFight = 0;
+    yourHp = 100;
+    enemyHp = 100;
+    fightText.innerHTML = 'K.O.'
+    fightTimeout = 3;
+}
+function win(){
+    isFight = 0;
+    yourHp = 100;
+    enemyHp = 100;
+    moneyCount += 30;
+    fightText.innerHTML = 'Success! +30$'
+    fightTimeout = 3;
+}
 function round(returner){
     thingrounded = returner
     if(returner >= 1000000000000000000000){
