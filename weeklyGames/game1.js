@@ -62,15 +62,9 @@ var boneShow = document.getElementById('bones')
 var boneMonsterWait = 0;
 var boneMonster = document.getElementById('boneMonster')
 var boneWait = 0
-var feed = document.getElementById('feed')
 var canFeed = false
 var productionbonerate = 0;
-feed.onclick = function(){
-    if(canFeed){
-        bone -= 1;
-        productionbonerate += 0.1;
-    }
-}
+
 function boneMonsterGo(){
     productionbonerate = 0.1
     canFeed = true;
