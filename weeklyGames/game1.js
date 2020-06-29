@@ -84,7 +84,7 @@ function boneMonsterGo(){
     },100)
 }
 window.setInterval(function(){
-    if(boneMonsterWait >= 1){
+    if(boneMonsterWait >= 2){
         boneShow.innerHTML = 'You have '+bone+' bones. [The bone monster is coming... '+boneMonsterWait+']'
         if(boneMonsterWait == 1){
             boneMonsterGo()
