@@ -233,6 +233,6 @@ tickDecBtn.onclick = function(){
             tickDecBtn.innerHTML = 'Sold Out [inf] [10 => 10]'
         }
         else{
-        tickDecBtn.innerHTML = 'Decrease Tick Count ['+round(tickDecCost)+'] ['+timeoutLength+' => '+(timeoutLength - Math.floor(timeoutLength / 10))+']'
+        tickDecBtn.innerHTML = 'Decrease Tick Count ['+round(tickDecCost)+'] ['+timeoutLength+' => '+(timeoutLength - Math.floor(timeoutLength / 4))+']'
     }}
 }
