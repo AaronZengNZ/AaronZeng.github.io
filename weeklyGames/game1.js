@@ -227,10 +227,10 @@ tickDecBtn.onclick = function(){
     if(moneyCount >= tickDecCost){
         moneyCount -= tickDecCost;
         timeoutLength -= Math.floor(timeoutLength / 4)
-        tickDecCost += Math.floor(tickDecCost * 10 - 8)
-        if(timeoutLength <= 10){
+        tickDecCost += Math.floor(tickDecCost * 2)
+        if(timeoutLength <= 3){
             tickDecCost = 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-            tickDecBtn.innerHTML = 'Sold Out [inf] [10 => 10]'
+            tickDecBtn.innerHTML = 'Sold Out [inf] [3 => 3]'
         }
         else{
         tickDecBtn.innerHTML = 'Decrease Tick Count ['+round(tickDecCost)+'] ['+timeoutLength+' => '+(timeoutLength - Math.floor(timeoutLength / 4))+']'
