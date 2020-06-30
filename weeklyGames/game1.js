@@ -74,7 +74,7 @@ function boneMonsterGo(){
             boneMonster.innerHTML = 'VVV=_ am bone monster | bone production ['+productionbonerate+']'
             bone += productionbonerate
             bone = Math.round(bone * 10) / 10
-            boneShow.innerHTML = 'You have '+bone+' bones. [The bone monster is coming... '+boneMonsterWait+']'
+            boneShow.innerHTML = 'You have '+bone+' bones. [The bone monster is here...]'
             
         }
         else{
