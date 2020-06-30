@@ -86,11 +86,11 @@ function boneMonsterGo(){
 window.setInterval(function(){
     if(boneMonsterWait >= 2){
         boneShow.innerHTML = 'You have '+bone+' bones. [The bone monster is coming... '+boneMonsterWait+']'
+        boneMonsterWait -= 1;
         if(boneMonsterWait == 1){
             boneMonsterGo()
             boneShow.innerHTML = 'You have '+bone+' bones. [The bone monster is here...]'
         }
-        boneMonsterWait -= 1;
     }
 },800)
 waste.onclick = function(){
@@ -127,7 +127,9 @@ window.setInterval(function(){
         fightTimeout -= 1;
     }
     else{
+        if(yourHp == 100){
         fight.innerHTML = 'Fight Someone [15]'
+        }
     }
 },500)
 fight.onclick = function(){
