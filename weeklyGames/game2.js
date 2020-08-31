@@ -100,13 +100,53 @@ var humStats = {
   rank: "COMMON",
   statTotal: 0,
 };
+var upgradeBtn = {
+  statments: [
+    "Add some gold for faster attraction",
+    "Make a house for higher stats",
+    "Add a statue for intimidation",
+    "Make a bed for higher health",
+    "Expand the house for faster attraction",
+    "Add golden food for better health",
+    "Make a turret for more intimidation",
+    "Add rooms for faster attraction",
+    "Make weapons for better stats",
+    "Do a dance for intimidation",
+    "Make a decoy for faster attraction",
+  ],
+  btn: document.getElementById("upgrade"),
+  statgains: [0, 20, 0, 30, 0, 35, 0, 0, 65, 0, 0],
+  enemygains: [0, 0, 35, 0, 0, 0, 65, 0, 0, 50, 0],
+  speedgains: [650, 650, 650, 400, 400, 400, 250, 250, 250, 100],
+  costs: [
+    1000,
+    2500,
+    7500,
+    20000,
+    35000,
+    80000,
+    150000,
+    275000,
+    400000,
+    750000,
+    1300000,
+  ],
+  buyNum: 0,
+};
+function upgrade() {
+  if (gold >= upgradeBtn.costs[upgradeBtn.buyNum]) {
+    gold -= upgradeBtn.costs[upgradeBtn.buyNum];
+    maxStats += upgradeBtn.statgains[upgradeBtn.buyNum];
+    maxEnemy
+  }
+}
 function weightConvert(weight, extraText = "") {
   var weightClone = weight;
   if (weightClone >= 1000000) {
-    return Math.floor(weightClone / 10000)/100 + " TONS" + extraText;
+    return Math.floor(weightClone / 10000) / 100 + " TONS" + extraText;
   } else {
     if (weightClone >= 1000) {
-      return Math.floor(weightClone / 10)/100 + " KILOS" + extraText;
+      return Math.floor(weightClone / 10) / 100 + " KILOS" + extraText;
     } else {
       return weightClone + " GRAMS" + extraText;
     }
@@ -153,10 +193,11 @@ window.setInterval(function () {
     }
   }
 }, 100);
+var maxEnemy = 50;
 fightStats[0].onclick = () => {
   console.log(fightStats.opHp);
   if (fighting == false) {
-    emStats = Math.floor(Math.random() * 50) + 50;
+    emStats = Math.floor(Math.random() * maxEnemy) + 50;
     fightStats[3].opLvl = Math.floor((emStats - 10) % 20);
     fightStats[3].opType = enemies[Math.floor((emStats - 50) / 20)];
     fightStats[3].opSize =
@@ -238,6 +279,7 @@ var timeout = {
   time: 0,
   timeSet: 1000,
 };
+var maxStats = 50;
 window.setInterval(function () {
   if (humanAlreadyExists) {
   } else {
@@ -246,15 +288,14 @@ window.setInterval(function () {
       human[2].classList.remove("d-none");
       human[1].classList.remove("d-none");
       humanAlreadyExists = true;
-      statTotal = Math.floor(Math.random() * 50) + 50;
-      var set = statTotal
-      if(statTotal > humStats.statTotal){
-          human[0].classList.remove()
-          human[0].classList.add('text-success')
-      }
-      else{
-        human[0].classList.remove()
-        human[0].classList.add('text-danger')
+      statTotal = Math.floor(Math.random() * maxStats) + 50;
+      var set = statTotal;
+      if (statTotal > humStats.statTotal) {
+        human[0].classList.remove();
+        human[0].classList.add("text-success");
+      } else {
+        human[0].classList.remove();
+        human[0].classList.add("text-danger");
       }
       rank = ranks[Math.floor((statTotal - 50) / 20)];
       humLev = Math.floor((statTotal - 10) % 20);
@@ -277,10 +318,10 @@ window.setInterval(function () {
         "|Rank:" +
         rank;
     } else {
-        human[0].classList.remove()
-          human[0].classList.add('text-info')
+      human[0].classList.remove();
+      human[0].classList.add("text-info");
       if (timeout.time > 0) {
-        human[0].innerHTML = timeout.time+"/"+timeout.timeSet; 
+        human[0].innerHTML = timeout.time + "/" + timeout.timeSet;
       }
       timeout.time += 1;
     }
