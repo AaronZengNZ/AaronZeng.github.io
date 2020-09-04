@@ -33,7 +33,7 @@ var questions = [
     answer: false,
   },
   {
-    question: "Is Martin African?",
+    question: "Is Martin African-American?",
     answer: true,
   },
 ];
@@ -59,8 +59,8 @@ window.setInterval(() => {
         questionsCorrect +
         " questions right out of " +
         questions.length +
-        ". You have also missed " +
-        questionsMissed +
+        " questions. You have missed " +
+        (questionsMissed == 0 ? "no" : questionsMissed) +
         " " +
         (questionsMissed == 1 ? "question." : "questions.") +
         " Your overall score is " +
@@ -71,6 +71,12 @@ window.setInterval(() => {
         ) *
           20 +
         "/100.";
+      back.innerHTML = "";
+      back.classList.remove("btn-danger");
+      back.classList.add("invisible");
+      next.innerHTML = "";
+      next.classList.remove("btn-success");
+      next.classList.add("invisible");
     }
     if (questionsDid.length >= questions.length) {
       document.getElementById("countDown").innerHTML = "";
