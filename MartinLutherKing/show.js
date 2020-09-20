@@ -44,6 +44,18 @@ var questions = [
     question: "Was Martin an Author?",
     answer: true,
   },
+  {
+    question: "Was Martin's Dad Not A Religous Leader?",
+    answer: false,
+  },
+  {
+    question: "Did Martin use effective communication using a slideshow?",
+    answer: false,
+  },
+  {
+    question: "Was Martin's speech in 1963, January?",
+    answer: true,
+  },
 ];
 var questionsDid = [""];
 var imgLinks = [""];
