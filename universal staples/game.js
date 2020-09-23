@@ -4,6 +4,7 @@ var staplesBtn = document.getElementById("mainBtn");
 var wireShow = document.getElementById("wireCount");
 var countDown = 0;
 var hasStaplesIncreased = false;
+console.log("Enter 'hack()' to hukk, but bewaer?");
 function round(returner) {
   thingrounded = returner;
   if (returner >= 100000000000000000000) {
@@ -83,22 +84,125 @@ var spamStuff = [
   "spaM",
   "SPam",
   "SpA?",
+  "Agh",
+  "Spmm",
+  "Milk",
+  "Mhhm",
+  "Yess",
+  "Spagm",
+  "Spum",
+  "Spem",
+  "Spim",
+  "Spem",
+  "Spam",
+  "Spam",
+  "Spam",
+  "I pity you, type 'stop_spareMe()'.",
 ];
+var whereWireIs = 0;
+var percentageDone = 0;
+var percentageDoneTxt = document.getElementById("youMoving");
+var blink;
+var spam;
 
 function hack() {
   money = 100000;
   staples = 5;
   console.log("ahaha why you");
   console.log("cheating is bad for your body");
-  console.log("spam!");
-  window.setInterval(() => {
-    console.log(spamStuff[Math.floor(Math.random() * spamStuff.length)]);
-  }, 10);
+  console.log("flashy");
+  blink = window.setInterval(() => {
+    if (Math.floor(Math.random() * 15) == 1) {
+      document.getElementById("body").classList =
+        "text-secondary mt-3 ml-3 d-none";
+    } else {
+      document.getElementById("body").classList = "text-secondary mt-3 ml-3";
+    }
+  }, 50);
+  return "Type 'stop_spareMe()' to stop the freking blinking";
+}
+
+function allIWantIsStop() {
+  window.clearInterval(blink);
+}
+
+function stop_spareMe() {
+  window.clearInterval(blink);
+  window.clearInterval(spam);
+  var timeout = 3600;
+  window.setTimeout(() => {
+    console.log("Error : '//document.html' merge failed");
+  }, 2000);
+  window.setTimeout(() => {
+    console.log(">>Identifying error source ...");
+  }, 2500);
+  window.setTimeout(() => {
+    console.log("Error: /c/Users/User.in requires authuntication password");
+  }, 3500);
+  for (i = 0; i < 50; i++) {
+    window.setTimeout(() => {
+      console.log(Math.round(Math.random() * 90000) + 10000);
+    }, timeout);
+    timeout += 100;
+  }
+  window.setTimeout(() => {
+    console.log("Authuntication Accessed");
+  }, 9000);
+  window.setTimeout(() => {
+    console.log("Merging //document.html");
+  }, 10000);
+  window.setTimeout(() => {
+    console.log("Error : html.doctype != html");
+  }, 11000);
+  window.setTimeout(() => {
+    console.log("Unpacking Err.Green ...");
+  }, 12000);
+  window.setTimeout(() => {
+    console.log("Warning: Err.Green doctype != screen.rgb");
+  }, 14000);
+  window.setTimeout(() => {
+    console.log("Secondary backup system loading...");
+  }, 16000);
+  window.setTimeout(() => {
+    console.log("Error : cannot transmit signal");
+  }, 20000);
+  window.setTimeout(() => {
+    console.log(
+      "Warning: Err.Green linking to hp302853/c/Users/User/Guest/Backup_Radar"
+    );
+  }, 22000);
+  window.setTimeout(() => {
+    console.log("Error : Link Failed");
+  }, 25000);
+  window.setTimeout(() => {
+    console.log("Ending Transmission...");
+  }, 25500);
+  window.setTimeout(() => {
+    window.setInterval(() => {
+      document.getElementById("body").classList =
+        "text-secondary mt-3 ml-3 d-none";
+    }, 1);
+  }, 27000);
+  return "Warning: /c/Users/User//document.html : /c/Users/Aaron//document.html && merge";
 }
 
 window.setInterval(() => {
   if (moveTimer > 0) {
     moveTimer--;
+    percentageDone = Math.round(
+      (moveTimer - whereWireIs) * (100 / (300 - whereWireIs)) * 100
+    );
+    if (moveTimer < 41) {
+      percentageDoneTxt.innerHTML = "Arrival!";
+    } else {
+      percentageDoneTxt.innerHTML =
+        "Your " +
+        inventory[inventory.length - 1] +
+        " are exploring... [" +
+        Math.round(percentageDone / 100 - 0.01) +
+        "%]";
+    }
+
     if (hasIncremented) {
       moveBtn.innerHTML =
         "Your " +
@@ -110,22 +214,25 @@ window.setInterval(() => {
     } else {
       moveBtn.innerHTML = "Doo de doddle do" + dotDotDotsArr[moveTimer % 4];
     }
-    if (moveTimer == 35) {
+    if (moveTimer == whereWireIs) {
       incrementedAmount = Math.round(Math.random() * buyItemNbr * 10);
       wire += incrementedAmount;
       hasIncremented = true;
+      moveTimer = 40;
+      whereWireIs = -1;
     }
   } else {
     moveBtn.innerHTML =
       "Find wire using yer " + inventory[inventory.length - 1];
     hasIncremented = false;
   }
-}, 100);
+}, 70);
 
 moveBtn.onclick = () => {
   console.log("hi");
   if (moveTimer == 0) {
-    moveTimer = 100 / moveSpeed;
+    whereWireIs = Math.round(Math.random() * 105) + 45;
+    moveTimer = 300;
   }
 };
 
